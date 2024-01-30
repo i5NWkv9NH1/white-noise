@@ -8,18 +8,19 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      titleTemplate: '%s - 米画师',
+      titleTemplate: '%s - WhiteNoise',
       htmlAttrs: {
         lang: 'zh-CN',
       },
       charset: 'utf-8',
       meta: [
-        { name: 'description', content: '米画师是为企划方与自由画师量身打造的专业美术外包服务平台，提供安全的交易担保、高效的稿件管理工具以及便捷的云端同步功能，为您带来与众不同的约稿体验，快速解决各种美术外包需求。' },
-        { name: 'keywords', content: '米画师,mihuashi,约稿平台,约稿,插画外包,插画外包网站,美术外包平台,游戏美术外包,画师,绘师,美术外包,原画外包,插画师,原画师,原画外包网站' },
+        { name: 'description', content: '' },
+        { name: 'keywords', content: '' },
       ]
     }
   },
   modules: [
+    // '@vueuse/sound/nuxt',
     '@vueuse/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -27,7 +28,6 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    'vue3-carousel-nuxt'
   ],
   devtools: { enabled: false },
   devServer: {
@@ -38,13 +38,19 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   vite: {
+    optimizeDeps: {
+      // * @vueuse/sound/nuxt
+      exclude: ['vue-demi']
+    },
     vue: {
       template: {
         transformAssetUrls,
       },
     },
   },
-  carousel: {
-    prefix: '__carousel__'
-  }
+  // sound: {
+  //   sounds: {
+  //     scan: true
+  //   }
+  // }
 })

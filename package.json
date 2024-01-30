@@ -1,5 +1,5 @@
 {
-  "name": "@sora.moe/huashi",
+  "name": "@sora.moe/white-noise",
   "type": "module",
   "private": true,
   "scripts": {
@@ -10,11 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.2",
     "@vueuse/nuxt": "^10.7.2",
+    "@vueuse/sound": "^2.0.1",
     "h3": "^1.10.1",
     "lodash-es": "^4.17.21",
-    "uuid": "^9.0.1",
-    "vue3-carousel-nuxt": "^1.1.0"
+    "nuxt-swiper": "^1.2.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.3",
