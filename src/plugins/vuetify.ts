@@ -8,14 +8,26 @@ export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
     // ... your configuration
     ssr: true,
-    blueprint: md3,
-    theme: {
-      defaultTheme: 'dark'
-    },
     defaults: {
       global: {
         ripple: false,
       },
+      VBtn: {
+        rounded: 'lg'
+      },
+      VCard: {
+        rounded: 'lg'
+      },
+      VSheet: {
+        rounded: 'lg'
+      },
+      VListItem: {
+        rounded: 'lg'
+      }
+    },
+    blueprint: md3,
+    theme: {
+      defaultTheme: 'dark'
     },
     icons: {
       defaultSet: 'mdi',
