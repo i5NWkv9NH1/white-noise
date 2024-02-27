@@ -17,12 +17,6 @@
     <VList
       density="compact"
       nav
-    >
-      <VListItem @click="() => { console.log('1') }">
-        <div class="text-caption">
-          Light
-        </div>
-      </VListItem>
-    </VList>
+    />
   </VMenu>
 </template>

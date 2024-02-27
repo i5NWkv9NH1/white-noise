@@ -1,4 +1,16 @@
 <script setup lang="ts">
+import { useTheme } from 'vuetify/lib/framework.mjs';
+const vuetify = useTheme()
+const isDark = useDark({
+  attribute: 'data-theme',
+  valueDark: 'dark',
+  valueLight: 'light'
+})
+const toggle = useToggle(isDark)
+const theme = computed(() => isDark.value ? 'dark' : 'light')
+watch(theme, () => {
+  vuetify.global.name.value = theme.value
+}, { immediate: true })
 
 </script>
 
@@ -19,10 +31,15 @@
       density="compact"
       nav
     >
-      <VListItem @click="() => { console.log('1') }">
-        <div class="text-caption">
-          Light
-        </div>
+      <VListItem
+        v-for="item in ['light', 'dark']"
+        :key="item"
+        @click="toggle()"
+        :disabled="theme === item"
+      >
+        <VListItemTitle class="text-capitalize">
+          {{ item }}
+        </VListItemTitle>
       </VListItem>
     </VList>
   </VMenu>

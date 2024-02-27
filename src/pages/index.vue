@@ -1,4 +1,5 @@
 <script setup lang="tsx">
+import { mdiWidgetsOutline, mdiPlayCircleOutline, mdiPauseCircleOutline, mdiTrashCanOutline } from '@mdi/js'
 import { VSlideYTransition } from 'vuetify/components';
 import { datas } from '~/data';
 const data = computed(() => datas)
@@ -19,9 +20,14 @@ function handlePlay() {
 }
 function handleRemove() {
   queue.value.forEach(audio => {
+    audio.src = ''
     audio.remove()
   })
 }
+
+useSeoMeta({
+  title: 'Updating...'
+})
 </script>
 
 <template>
@@ -30,13 +36,6 @@ function handleRemove() {
 
     <section class="d-flex flex-column gap-8 my-10">
       <h4 class="text-h4 font-weight-bold">预设</h4>
-      <VCardActions>
-        <VBtn @click="handleQueue">Show Audios</VBtn>
-        <VBtn @click="handlePlay">Play All</VBtn>
-        <VBtn @click="handlePause">Pause All</VBtn>
-        <VBtn @click="handleRemove">Remove All</VBtn>
-      </VCardActions>
-
       <!-- TODO: preset card -->
       <VSheet
         class="fill-width  font-weight-bold text-body-1 d-flex align-center justify-center"
@@ -45,6 +44,25 @@ function handleRemove() {
       >
         <div>敬请期待...</div>
       </VSheet>
+
+      <div class="actions d-flex gap-2">
+        <VBtn @click="handleQueue">
+          <VIcon start>{{ mdiWidgetsOutline }}</VIcon>
+          <span>Show Audios</span>
+        </VBtn>
+        <VBtn @click="handlePlay">
+          <VIcon start>{{ mdiPlayCircleOutline }}</VIcon>
+          <span>Play All</span>
+        </VBtn>
+        <VBtn @click="handlePause">
+          <VIcon start>{{ mdiPauseCircleOutline }}</VIcon>
+          <span>Pause All</span>
+        </VBtn>
+        <VBtn @click="handleRemove">
+          <VIcon start>{{ mdiTrashCanOutline }}</VIcon>
+          <span>Remove All</span>
+        </VBtn>
+      </div>
       <!-- <VRow>
         <VCol v-for="preset in presetChannels" :key="preset.name" cols="6" lg="3" md="4" sm="4">
           <PresetCard v-bind="preset" />

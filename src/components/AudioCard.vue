@@ -28,8 +28,13 @@ const selectedAudio = ref<AudioItem>(props.channel.audios[0] || props.audios[0])
 //   || props.channel.audios[0]
 //   || props.audios[0]
 // )
-const audioFile = computed(() => `/sounds/${props.scope.dir}/${props.channel.dir}/${selectedAudio.value.file}--${props.bps}.m4a`)
-// const audio = ref<HTMLAudioElement>(new Audio(audioFile.value))
+const baseUrl = computed(() => {
+  if (process.client) {
+    return window.location.pathname
+  }
+  return ''
+})
+const audioFile = computed(() => (`${baseUrl.value}/sounds/${props.scope.dir}/${props.channel.dir}/${selectedAudio.value.file}--${props.bps}.m4a`));
 const audio = ref<HTMLAudioElement>(new Audio())
 // * status
 const isPlaying = ref<boolean>(false)
@@ -37,12 +42,6 @@ const isPlaying = ref<boolean>(false)
 // * control
 const volume = ref<number>(100)
 const color = computed(() => `success`)
-
-
-// ! hooks
-if (process.client) {
-  // audio.value = new Audio(audioFile.value)
-}
 
 onMounted(() => {
   audio.value = new Audio()
@@ -58,7 +57,6 @@ onMounted(() => {
     audio.value.play()
   })
 })
-
 
 // * watchers
 watch(volume, () => {
