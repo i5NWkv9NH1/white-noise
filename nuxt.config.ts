@@ -3,11 +3,11 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   srcDir: 'src/',
-  baseURL: '/white-noise/',
   css: [
     '~/assets/styles/main.scss',
   ],
   app: {
+		baseURL: '/white-noise/',
     head: {
       titleTemplate: '%s - WhiteNoise',
       htmlAttrs: {
